@@ -1,3 +1,4 @@
+import sys
 import logging
 from gensim.corpora.textcorpus import TextCorpus
 from gensim.models.ldamodel import LdaModel
@@ -35,19 +36,18 @@ class LDA(object):
         self._dictionary = Dictionary.load(self._dict_file)
 
     def topics(self, words):
-        return self._lda[common.filter(words)]
+        return self._lda[self._dictionary.doc2bow(common.filter(words))]
 
     def topic_vector(self, words):
-        return [v for k, v in self._lda.__getitem__(common.filter(words), eps=0)]
+        return [v for k, v in self._lda.__getitem__(self._dictionary.doc2bow(common.filter(words)), eps=0)]
 
-def main():
+def main(train, model, dic, topics):
     logging.basicConfig(level=logging.INFO)
-    lda = LDA('model.txt', 'vocab.txt', 'train.txt', topics = 10)
+    lda = LDA(model, dic, train, topics=int(topics))
     lda.train()
-    
-    for sentence in ['i want to go', 'i want to leave']:
-        for dist in lda.topics(sentence.split()):
-            print dist
 
 if __name__ == '__main__':
-    main()
+    if len(sys.argv) != 5:
+        sys.stderr.write('Usage: %s train.txt model dict topics\n' % sys.argv[0])
+        sys.exit(1)
+    main(*sys.argv[1:])
