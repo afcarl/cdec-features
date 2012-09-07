@@ -7,9 +7,6 @@ from gensim.corpora.dictionary import Dictionary
 import common
 
 class SentenceDocCorpus(TextCorpus):
-    def __init__(self, input):
-        super(SentenceDocCorpus, self).__init__(input)
-
     def get_texts(self):
         with open(self.input) as f:
             for sentence in f:
