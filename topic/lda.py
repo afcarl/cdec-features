@@ -1,5 +1,6 @@
 import sys
 import logging
+import numpy as np
 from gensim.corpora.textcorpus import TextCorpus
 from gensim.models.ldamodel import LdaModel
 from gensim.corpora.dictionary import Dictionary
@@ -39,7 +40,7 @@ class LDA(object):
         return self._lda[self._dictionary.doc2bow(common.filter(words))]
 
     def topic_vector(self, words):
-        return [v for k, v in self._lda.__getitem__(self._dictionary.doc2bow(common.filter(words)), eps=0)]
+        return np.array([v for k, v in self._lda.__getitem__(self._dictionary.doc2bow(common.filter(words)), eps=0)])
 
 def main(train, model, dic, topics):
     logging.basicConfig(level=logging.INFO)
