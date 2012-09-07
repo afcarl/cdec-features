@@ -36,7 +36,7 @@ def extractFSentLens(ctx):
 	f = ctx.f_text
 	testSent = cdec.sa.decode_sentence(ctx.test_sentence)
 	testSentLen = len(testSent)-2 #minus 2 because of the "<s>" and "</s>" in the testSent-representation
-	fsentLenList = [] #list of the length of the sentences occurre for ephrase
+	fsentLenList = [] #list of the lengths of the training sentences observed for fphrase
 	for m in ctx.matches:
 		fsentId = ctx.f_text.get_sentence_id(m[0]) #note that m should entail at least one entry (tuple) which all have the same sentence id
 		fsent = ctx.f_text.get_sentence(fsentId)
