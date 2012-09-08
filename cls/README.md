@@ -1,4 +1,4 @@
-# Topic similarity feature
+# Word-class similarity feature
 
 1. Cluster the words using mkcls:
 
