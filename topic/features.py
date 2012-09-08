@@ -1,8 +1,9 @@
 import logging
 import numpy as np
+import cPickle
+import math
 import cdec.sa
 from lda import LDA
-import cPickle
 
 lda, train_topics = None, None
 @cdec.sa.configure
@@ -25,7 +26,7 @@ def sym_divergence(x, y):
     return (divergence(x, m) + divergence(y, m))/2
 
 def divergence(x, y):
-    return (x * np.log(x/y)).sum()
+    return math.log((x * np.log(x/y)).sum())
 
 @cdec.sa.feature
 def LDADivergence(ctx):
