@@ -1,7 +1,6 @@
 import logging
 import numpy as np
 import cdec.sa
-from lda import LDA
 import cPickle
 import math
 
