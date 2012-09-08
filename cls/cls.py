@@ -39,7 +39,7 @@ def AvgWordClassSimilarity(ctx):
   for tup in ctx.matches:
     match_classes = train_classes[ctx.f_text.get_sentence_id(tup[0])]
     sims.append(similarity(input_classes, match_classes))
-  return sum(sims)/len(divs)
+  return sum(sims)/len(sims)
 
 @cdec.sa.feature
 def MaxWordClassSimilarity(ctx):
