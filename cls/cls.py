@@ -14,7 +14,7 @@ def configure(config):
   logging.info('Read %d classes', len(cls_dict))
 
   logging.info('Loading the classes of the training corpus')
-  with open(config['cls_train']) as fclsm:
+  with open(config['train_cls']) as fclsm:
     train_classes = cPickle.load(fclsm)
   logging.info('Read classes for %d sentences', len(train_classes))
 
