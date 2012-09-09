@@ -34,5 +34,11 @@ def LDADivergence(ctx):
     divs = []
     for tup in ctx.matches:
         match_topics = train_topics[ctx.f_text.get_sentence_id(tup[0])]
-        divs.append(sym_divergence(input_topics, match_topics))
-    return sum(divs)/len(divs)
+        try:
+            divs.append(sym_divergence(input_topics, match_topics))
+        except:
+            pass
+    if len(divs):
+        return sum(divs)/len(divs)
+    else:
+        return 0
