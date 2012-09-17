@@ -13,6 +13,7 @@ def configure(config):
 	train_tag_file = config['train_tag']
 	test_tag_file = config['test_tag']
 
+# wasn't able to properly read parameters from config, manual path specifications for now
 train_tag_file = "/home/gesa/cl/mt/mtm/fbis/corpus.puretag.zh"
 test_tag_file = "/home/gesa/cl/mt/mtm/fbis/dev_and_test/mt03.puretag.zh"
 # load train and test set tagging into some data structure
